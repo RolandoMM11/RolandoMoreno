@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-title>Calificaciones</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+      <ion-item>
+          <ion-label>
+              Materia:
+          </ion-label>
+          <ion-input type="text" [(ngModel)]="materia" placeholder="Ingrese el nombre de la materia"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label>
+              Estado:
+          </ion-label>
+          <ion-input type="text" [(ngModel)]="aprobado" placeholder="Ingrese si el alumno esta aprobado o reprobado"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+            Calificacion:
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="cal" placeholder="Ingrese la calificacion"></ion-input>
+    </ion-item>
+      <ion-item>
+          <ion-button type="button" (click)="guardar()">{{estado}}</ion-button>
+          <ion-button *ngIf="estado==='actualizar'" type="button" (click)="cancelar()">Cancelar</ion-button>
+          <ion-text *ngIf="error" color="danger">
+              <h6>Debe ingresar materia, calificacion y si aprobó o reprobo para {{estado}}</h6>
+          </ion-text>
+      </ion-item>
+
+      
+
+
+      <ion-item *ngIf="calificaciones.length>0">
+          <app-datos-calificaciones [calificacionList]="calificaciones" (eliminar)="eliminar($event)" (editar)="editar($event)"></app-datos-calificaciones>
+      </ion-item>
+  </ion-list>
+</ion-content>
